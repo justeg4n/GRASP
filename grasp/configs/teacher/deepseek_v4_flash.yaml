@@ -1,0 +1,19 @@
+# Teacher đóng vai cả 3 agent RD/QF/KI khi sinh dữ liệu SFT — FPT AI Factory (OpenAI-compatible).
+# Danh sách model + giá hiện hành: GET https://mkp-api.fptcloud.com/v1/models (scripts/check_api.py in ra).
+client:
+  base_url: ${oc.env:FPT_BASE_URL,https://mkp-api.fptcloud.com/v1}
+  api_key: ${oc.env:FPT_API_KEY,""}
+  model: DeepSeek-V4-Flash
+  temperature: 0.3
+  max_tokens: 2048       # rộng tay: nếu model có reasoning token thì chúng cũng tính vào max_tokens
+  concurrency: 32
+  timeout: 180
+  max_retries: 6
+  price: { input_per_m: 0.14, output_per_m: 0.28 }   # USD / 1M token — kiểm tra lại bằng check_api.py
+role_max_tokens: {}      # vd. { rd: 256, qf: 1024, ki: 512 } nếu muốn chặn output dài
+parse_retries: 1         # output sai format -> hỏi lại 1 lần với temperature thấp hơn
+retry_temperature: 0.0
+extractor:               # cùng model, dùng để trích triple từ doc được retrieve (thay Llama-3-8B của SPARKLE)
+  client_overrides: { concurrency: 32, temperature: 0.0 }
+  max_tokens: 1024
+  temperature: 0.0

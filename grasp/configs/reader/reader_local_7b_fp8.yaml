@@ -1,0 +1,13 @@
+# Reader đóng băng, serve bằng vLLM trong Docker (scripts/serve_reader.sh fp8).
+# FP8 gần như không mất chất lượng so với bf16 (bản dùng khi train GRPO trên GPU thuê).
+client:
+  base_url: ${oc.env:READER_BASE_URL,http://localhost:8000/v1}
+  api_key: ${oc.env:READER_API_KEY,EMPTY}
+  model: Qwen/Qwen2.5-7B-Instruct
+  temperature: 0.7
+  max_tokens: 512
+  concurrency: 16
+  timeout: 300
+tokenizer: Qwen/Qwen2.5-7B-Instruct
+max_tokens_answer: 1024
+serve: { mode: fp8 }

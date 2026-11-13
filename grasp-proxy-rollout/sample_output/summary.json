@@ -1,0 +1,11 @@
+{
+  "synthetic_example": true,
+  "questions": 1,
+  "trajectories": 2,
+  "proxy_actions": 3,
+  "valid_action_rate": 1.0,
+  "mean_reward": 0.5,
+  "mean_answer_f1": 0.5,
+  "mean_context_recall": 0.5,
+  "zero_variance_groups": 0
+}

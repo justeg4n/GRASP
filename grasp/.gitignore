@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.ruff_cache/
+.pytest_cache/
+
+# KHÔNG commit dữ liệu, index, checkpoint, log (chỉ ở gốc repo — không đụng tới configs/ hay src/grasp/data/)
+/data/
+/indexes/
+/cache/
+/outputs/
+/checkpoints/
+/wandb/
+/multirun/
+*.faiss
+*.safetensors
+*.bin
+*.sqlite
+.ipynb_checkpoints/

@@ -1,0 +1,4 @@
+# @package _global_
+defaults:
+  - override /train: grpo_g4
+tags: [rq1, main]

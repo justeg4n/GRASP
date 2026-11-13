@@ -1,0 +1,96 @@
+# Local Git metadata saved when consolidating the five repositories
+/.git-backups/
+
+# Python environments, build products and caches
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv*/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.tox/
+.nox/
+.uv-cache/
+.cache/
+build/
+dist/
+.coverage
+.coverage.*
+htmlcov/
+.ipynb_checkpoints/
+
+# Credentials and machine-specific configuration; keep public examples
+.env
+.env.*
+*.env
+!.env.example
+!.env.*.example
+!*.env.example
+*.local.yaml
+*.local.yml
+*.local.json
+*.pem
+*.key
+.aws/
+.ssh/
+.huggingface/
+.netrc
+_netrc
+.pypirc
+
+# Artifacts at the workspace root or directly inside a component.
+# Do not ignore source packages such as grasp/src/grasp/data/.
+/data/
+/*/data/
+/raw/
+/*/raw/
+/work/
+/*/work/
+/release/
+/*/release/
+/cache/
+/*/cache/
+/indexes/
+/*/indexes/
+/checkpoints/
+/*/checkpoints/
+/outputs/
+# Component .gitignore files govern component outputs, including the
+# gold-evidence builder's explicitly versioned canonical handoff.
+/runs/
+/wandb/
+/logs/
+/*/wandb/
+/*/logs/
+/*/multirun/
+/*/.downloads/
+*-handoff/
+*.faiss
+*.sqlite
+*.sqlite-*
+*.db
+*.safetensors
+*.gguf
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.parquet
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.log
+
+# Local tools and OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.tmp
+*.bak

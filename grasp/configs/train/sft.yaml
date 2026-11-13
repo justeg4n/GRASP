@@ -1,0 +1,5 @@
+algo: sft
+epochs: 1
+lr: 1.0e-5
+batch_size: 2
+grad_accum: 8

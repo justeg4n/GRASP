@@ -1,0 +1,8 @@
+[
+  {
+    "id": "example-qa-1",
+    "question": "What was the population of Lake Grove in 2010?",
+    "gold_answers": ["11,163"],
+    "gold_doc_ids": ["doc-lake-grove"]
+  }
+]

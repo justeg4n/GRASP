@@ -1,0 +1,44 @@
+[
+  {
+    "id": "example-rd-1",
+    "role": "rd",
+    "state": {
+      "question": "What was the population of Lake Grove in 2010?",
+      "context": [],
+      "thoughts": ["I need the 2010 census population."]
+    }
+  },
+  {
+    "id": "example-qf-1",
+    "role": "qf",
+    "state": {
+      "question": "What was the population of the village where Smith Haven Mall was located?",
+      "thoughts": ["Smith Haven Mall was located in Lake Grove."]
+    }
+  },
+  {
+    "id": "example-ki-1",
+    "role": "ki",
+    "state": {
+      "question": "What was the population of Lake Grove in 2010?",
+      "chain": [
+        {"head": "Smith Haven Mall", "relation": "located in", "tail": "Lake Grove"}
+      ],
+      "query": "Lake Grove population 2010 census",
+      "candidates": [
+        {
+          "head": "Lake Grove",
+          "relation": "population in 2010",
+          "tail": "11,163",
+          "doc_id": "doc-1"
+        },
+        {
+          "head": "Smith Haven Mall",
+          "relation": "opened in",
+          "tail": "1969",
+          "doc_id": "doc-2"
+        }
+      ]
+    }
+  }
+]

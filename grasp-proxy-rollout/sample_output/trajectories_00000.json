@@ -1,0 +1,125 @@
+[
+  {
+    "trajectory_schema": "grasp-agentic-trajectory-v2",
+    "trajectory_id": "example-qa-1::group-0::sample-0",
+    "group_id": "example-qa-1::group-0",
+    "sample_index": 0,
+    "question_id": "example-qa-1",
+    "question": "What was the population of Lake Grove in 2010?",
+    "gold_answers": ["11,163"],
+    "gold_doc_ids": ["doc-lake-grove"],
+    "initial_retrieval": {
+      "enabled": true,
+      "query": "What was the population of Lake Grove in 2010?",
+      "retrieved": [{"doc_id": "doc-lake-grove", "title": "Lake Grove, New York", "score": 0.91}],
+      "context_doc_ids": ["doc-lake-grove"],
+      "counts_toward_retrieval_cost": false
+    },
+    "steps": [
+      {
+        "step": 0,
+        "reader_prompt": "Synthetic reader prompt",
+        "reader_response": "<think>I need census evidence.</think>",
+        "reader_thought": "I need census evidence.",
+        "retrieval_performed": true,
+        "context_before_doc_ids": ["doc-lake-grove"],
+        "proxy_actions": [
+          {
+            "role": "rd",
+            "observation": {"question": "What was the population of Lake Grove in 2010?", "context": [], "thoughts": ["I need census evidence."]},
+            "prompt": "Synthetic RD prompt",
+            "response": "Yes (retrieval is required)",
+            "parsed_action": true,
+            "valid_format": true,
+            "validation_error": null,
+            "old_logprob_sum": -0.12,
+            "old_logprob_mean": -0.12,
+            "token_count": 1,
+            "response_token_ids": [9454],
+            "old_token_logprobs": [-0.12],
+            "behavior_policy_checkpoint": "D:\\checkpoints\\proxy-sft"
+          },
+          {
+            "role": "qf",
+            "observation": {"question": "What was the population of Lake Grove in 2010?", "context": [], "thoughts": ["I need census evidence."]},
+            "prompt": "Synthetic QF prompt",
+            "response": "Reasoning Chain: None\nKnowledge Gap: To continue answering the question, we need to know: 2010 population\nQuery: Lake Grove population 2010",
+            "parsed_action": {"chain": [], "knowledge_gap": "2010 population", "query": "Lake Grove population 2010"},
+            "valid_format": true,
+            "validation_error": null,
+            "old_logprob_sum": -1.4,
+            "old_logprob_mean": -0.14,
+            "token_count": 10,
+            "response_token_ids": [90, 1, 2, 3, 4, 5, 6, 7, 8, 92],
+            "old_token_logprobs": [-0.1, -0.2, -0.1, -0.1, -0.2, -0.1, -0.2, -0.1, -0.2, -0.1],
+            "behavior_policy_checkpoint": "D:\\checkpoints\\proxy-sft"
+          },
+          {
+            "role": "ki",
+            "observation": {"question": "What was the population of Lake Grove in 2010?", "chain": [], "query": "Lake Grove population 2010", "candidates": [{"head": "Lake Grove", "relation": "population in 2010", "tail": "11,163", "doc_id": "doc-lake-grove"}]},
+            "prompt": "Synthetic KI prompt",
+            "response": "<Lake Grove; population in 2010; 11,163>",
+            "parsed_action": {"head": "Lake Grove", "relation": "population in 2010", "tail": "11,163"},
+            "valid_format": true,
+            "validation_error": null,
+            "old_logprob_sum": -0.08,
+            "old_logprob_mean": -0.08,
+            "token_count": 1,
+            "response_token_ids": [15],
+            "old_token_logprobs": [-0.08],
+            "behavior_policy_checkpoint": "D:\\checkpoints\\proxy-sft",
+            "selected_candidate_index": 0
+          }
+        ],
+        "retrieved": [{"doc_id": "doc-lake-grove", "title": "Lake Grove, New York", "score": 0.91}],
+        "selected_candidate": {"head": "Lake Grove", "relation": "population in 2010", "tail": "11,163", "doc_id": "doc-lake-grove"},
+        "context_after_doc_ids": ["doc-lake-grove"]
+      }
+    ],
+    "final_context_doc_ids": ["doc-lake-grove"],
+    "final_answer": "11,163",
+    "final_reader": {"prompt": "Synthetic final reader prompt", "response": "<answer>11,163</answer>"},
+    "termination": "forced_final_answer",
+    "reward": {"answer_f1": 1.0, "context_recall": 1.0, "retrieval_count": 1, "retrieval_cost": 0.0, "total": 1.0},
+    "grpo_advantage": 0.999998000004,
+    "metadata": {"synthetic_example": true}
+  },
+  {
+    "trajectory_schema": "grasp-agentic-trajectory-v2",
+    "trajectory_id": "example-qa-1::group-0::sample-1",
+    "group_id": "example-qa-1::group-0",
+    "sample_index": 1,
+    "question_id": "example-qa-1",
+    "question": "What was the population of Lake Grove in 2010?",
+    "gold_answers": ["11,163"],
+    "gold_doc_ids": ["doc-lake-grove"],
+    "initial_retrieval": {
+      "enabled": true,
+      "query": "What was the population of Lake Grove in 2010?",
+      "retrieved": [{"doc_id": "doc-lake-grove", "title": "Lake Grove, New York", "score": 0.91}],
+      "context_doc_ids": ["doc-lake-grove"],
+      "counts_toward_retrieval_cost": false
+    },
+    "steps": [
+      {
+        "step": 0,
+        "reader_prompt": "Synthetic reader prompt",
+        "reader_response": "<answer>Unknown</answer>",
+        "reader_thought": null,
+        "retrieval_performed": false,
+        "context_before_doc_ids": ["doc-lake-grove"],
+        "proxy_actions": [],
+        "retrieved": [],
+        "selected_candidate": null,
+        "context_after_doc_ids": ["doc-lake-grove"]
+      }
+    ],
+    "final_context_doc_ids": ["doc-lake-grove"],
+    "final_answer": "Unknown",
+    "final_reader": null,
+    "termination": "reader_answer",
+    "reward": {"answer_f1": 0.0, "context_recall": 0.0, "retrieval_count": 0, "retrieval_cost": 0.0, "total": 0.0},
+    "grpo_advantage": -0.999998000004,
+    "metadata": {"synthetic_example": true}
+  }
+]

@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "grasp-proxy-rollout"
+version = "0.2.0"
+description = "Train the GRASP proxy from JSONL and export PPO/GRPO-ready trajectories."
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  "accelerate>=1.4,<2",
+  "jinja2>=3.1",
+  "numpy>=1.26",
+  "peft>=0.14,<1",
+  "torch>=2.4,<3",
+  "transformers>=4.51,<5",
+]
+
+[project.optional-dependencies]
+quantization = ["bitsandbytes>=0.45"]
+train = [
+  "bitsandbytes>=0.45",
+  "datasets>=3.2,<5",
+]
+rollout = [
+  "faiss-cpu>=1.9",
+  "openai>=1.68",
+  "sentence-transformers>=3.4",
+]
+dev = [
+  "jsonschema>=4.23",
+  "pytest>=8.3",
+  "ruff>=0.11",
+]
+
+[project.scripts]
+grasp-build-index = "grasp_proxy_rollout.build_index:main"
+grasp-build-triple-cache = "grasp_proxy_rollout.build_triple_cache:main"
+grasp-export-rollouts = "grasp_proxy_rollout.trajectory_export:main"
+grasp-package-sft-output = "grasp_proxy_rollout.package_output:main"
+grasp-package-vast-input = "grasp_proxy_rollout.package_input:main"
+grasp-audit-actions = "grasp_proxy_rollout.export:main"
+grasp-train-sft = "grasp_proxy_rollout.train_sft:main"
+grasp-validate-sft-data = "grasp_proxy_rollout.sft_data:main"
+grasp-validate-checkpoint = "grasp_proxy_rollout.validate_checkpoint:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+grasp_proxy_rollout = ["trajectory_schema.json"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]

@@ -1,0 +1,15 @@
+[
+  {
+    "doc_id": "doc-lake-grove",
+    "title": "Lake Grove, New York",
+    "text": "The population of Lake Grove was 11,163 at the 2010 census.",
+    "triples": [
+      {
+        "head": "Lake Grove",
+        "relation": "population in 2010",
+        "tail": "11,163",
+        "doc_id": "doc-lake-grove"
+      }
+    ]
+  }
+]

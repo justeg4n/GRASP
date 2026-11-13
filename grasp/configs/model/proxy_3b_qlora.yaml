@@ -1,0 +1,5 @@
+# Stretch goal: chỉ chạy khi profiler cho thấy còn dư VRAM
+name: Qwen/Qwen2.5-3B-Instruct
+load_in_4bit: true
+lora: { r: 32, alpha: 64, dropout: 0.05, target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj] }
+max_seq_len: 4096

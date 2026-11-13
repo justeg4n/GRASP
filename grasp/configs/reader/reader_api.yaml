@@ -1,0 +1,11 @@
+# Reader qua API OpenAI-compatible bất kỳ (vd. vLLM trên GPU thuê)
+client:
+  base_url: ${oc.env:READER_BASE_URL}
+  api_key: ${oc.env:READER_API_KEY}
+  model: ${oc.env:READER_MODEL,Qwen/Qwen2.5-7B-Instruct}
+  temperature: 0.7
+  max_tokens: 512
+  concurrency: 32
+  timeout: 300
+tokenizer: Qwen/Qwen2.5-7B-Instruct
+max_tokens_answer: 1024

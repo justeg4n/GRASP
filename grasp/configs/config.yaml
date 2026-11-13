@@ -1,0 +1,32 @@
+defaults:
+  - model: proxy_3b
+  - reader: reader_local_7b_fp8
+  - retriever: e5_large
+  - teacher: deepseek_v4_flash
+  - data: hotpotqa
+  - collect: sft
+  - train: grpo_g4
+  - _self_
+
+seed: 42
+max_steps: 5            # số bước suy luận tối đa mỗi câu hỏi
+alpha: 0.3              # reward = alpha*Recall(context) + (1-alpha)*F1(answer)
+
+# Split cố định theo SPARKLE (Appendix D.3): 3K câu/dataset cho SFT (2.5K train + 0.5K val),
+# thêm 3K câu không trùng dành cho GRPO (lọc theo độ khó sau khi SFT).
+splits:
+  seed: 42
+  sizes: { sft_train: 2500, sft_val: 500, rl_pool: 3000 }
+
+paths:
+  data: ${oc.env:GRASP_DATA_DIR,./data}     # đặt GRASP_DATA_DIR=D:/grasp-data (cần ~100GB)
+  raw: ${paths.data}/raw
+  corpus: ${paths.data}/corpus
+  cache: ${paths.data}/cache
+  trajectories: ${paths.data}/trajectories
+  sft: ${paths.data}/sft
+  outputs: ./outputs
+wandb:
+  project: ${oc.env:WANDB_PROJECT,grasp}
+  entity: ${oc.env:WANDB_ENTITY,null}
+  mode: ${oc.env:WANDB_MODE,offline}        # online khi đã `wandb login`

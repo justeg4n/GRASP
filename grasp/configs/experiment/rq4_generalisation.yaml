@@ -1,0 +1,6 @@
+# @package _global_
+defaults:
+  - override /retriever: bge_base
+  - override /reader: reader_api
+eval_only: true
+tags: [rq4, generalisation]

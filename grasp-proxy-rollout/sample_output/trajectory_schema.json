@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GRASP proxy rollout trajectory",
+  "description": "One on-policy trajectory sampled from an SFT proxy checkpoint. Stored old log-probabilities are valid only until that actor is updated.",
+  "type": "object",
+  "required": [
+    "trajectory_schema",
+    "trajectory_id",
+    "group_id",
+    "sample_index",
+    "question_id",
+    "question",
+    "gold_answers",
+    "gold_doc_ids",
+    "initial_retrieval",
+    "steps",
+    "final_context_doc_ids",
+    "final_answer",
+    "termination",
+    "reward",
+    "grpo_advantage"
+  ],
+  "properties": {
+    "trajectory_schema": {"const": "grasp-agentic-trajectory-v2"},
+    "trajectory_id": {"type": "string", "minLength": 1},
+    "group_id": {"type": "string", "minLength": 1},
+    "sample_index": {"type": "integer", "minimum": 0},
+    "question_id": {"type": "string"},
+    "question": {"type": "string", "minLength": 1},
+    "gold_answers": {"type": "array", "items": {"type": "string"}},
+    "gold_doc_ids": {"type": "array", "items": {"type": "string"}},
+    "initial_retrieval": {
+      "type": "object",
+      "required": [
+        "enabled",
+        "query",
+        "retrieved",
+        "context_doc_ids",
+        "counts_toward_retrieval_cost"
+      ],
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "query": {"type": ["string", "null"]},
+        "retrieved": {"type": "array", "items": {"type": "object"}},
+        "context_doc_ids": {"type": "array", "items": {"type": "string"}},
+        "counts_toward_retrieval_cost": {"const": false}
+      },
+      "additionalProperties": false
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "step",
+          "reader_prompt",
+          "reader_response",
+          "context_before_doc_ids",
+          "proxy_actions",
+          "retrieved",
+          "context_after_doc_ids"
+        ],
+        "properties": {
+          "step": {"type": "integer", "minimum": 0},
+          "reader_prompt": {"type": "string"},
+          "reader_response": {"type": "string"},
+          "reader_thought": {"type": ["string", "null"]},
+          "retrieval_performed": {"type": "boolean"},
+          "context_before_doc_ids": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "proxy_actions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "role",
+                "observation",
+                "prompt",
+                "response",
+                "parsed_action",
+                "valid_format",
+                "old_logprob_sum",
+                "old_logprob_mean",
+                "token_count",
+                "response_token_ids",
+                "old_token_logprobs",
+                "behavior_policy_checkpoint"
+              ],
+              "properties": {
+                "role": {"enum": ["rd", "qf", "ki"]},
+                "observation": {"type": "object"},
+                "prompt": {"type": "string"},
+                "response": {"type": "string"},
+                "parsed_action": {},
+                "valid_format": {"type": "boolean"},
+                "validation_error": {"type": ["string", "null"]},
+                "old_logprob_sum": {"type": "number"},
+                "old_logprob_mean": {"type": "number"},
+                "token_count": {"type": "integer", "minimum": 0},
+                "response_token_ids": {
+                  "type": "array",
+                  "items": {"type": "integer"}
+                },
+                "old_token_logprobs": {
+                  "type": "array",
+                  "items": {"type": "number"}
+                },
+                "behavior_policy_checkpoint": {"type": "string"},
+                "environment_fallback": {"type": "string"}
+              },
+              "additionalProperties": true
+            }
+          },
+          "retrieved": {"type": "array", "items": {"type": "object"}},
+          "selected_candidate": {"type": ["object", "null"]},
+          "context_after_doc_ids": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "final_context_doc_ids": {"type": "array", "items": {"type": "string"}},
+    "final_answer": {"type": "string"},
+    "final_reader": {"type": ["object", "null"]},
+    "termination": {"type": "string"},
+    "reward": {
+      "type": "object",
+      "required": [
+        "answer_f1",
+        "context_recall",
+        "retrieval_count",
+        "retrieval_cost",
+        "total"
+      ],
+      "properties": {
+        "answer_f1": {"type": "number"},
+        "context_recall": {"type": ["number", "null"]},
+        "retrieval_count": {"type": "integer", "minimum": 0},
+        "retrieval_cost": {"type": "number"},
+        "total": {"type": "number"}
+      },
+      "additionalProperties": true
+    },
+    "grpo_advantage": {"type": "number"},
+    "metadata": {"type": "object"}
+  },
+  "additionalProperties": true
+}

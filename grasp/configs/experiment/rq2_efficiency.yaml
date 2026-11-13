@@ -1,0 +1,6 @@
+# @package _global_
+# Chạy 2 lần: train=grpo_g4 và train=ppo, cùng phần cứng, bật profiler
+defaults:
+  - override /train: grpo_g4
+profile: true
+tags: [rq2, efficiency]

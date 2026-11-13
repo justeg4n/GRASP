@@ -1,0 +1,10 @@
+algo: grpo
+group_size: 2            # G
+branch_depth: 2          # L — số bước đầu có branching
+prune_duplicate_context: true
+lr: 1.0e-6
+clip_eps: 0.2
+kl_beta: 0.04
+batch_size: 1
+grad_accum: 8
+epochs: 1

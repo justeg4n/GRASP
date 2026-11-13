@@ -1,0 +1,23 @@
+# Teacher qua Amazon Bedrock (endpoint OpenAI-compatible "bedrock-mantle"), dùng credit AWS.
+# Chọn: teacher=qwen3_235b_bedrock. Qwen3 235B A22B 2507 (Instruct, không có reasoning token).
+# Model id chưa đúng -> check_api.py in danh sách id có trên endpoint.
+client:
+  base_url: ${oc.env:BEDROCK_BASE_URL,https://bedrock-mantle.ap-southeast-2.api.aws/v1}
+  api_key: ${oc.env:BEDROCK_API_KEY,""}
+  model: ${oc.env:BEDROCK_TEACHER_MODEL,qwen.qwen3-235b-a22b-2507}
+  temperature: 0.3
+  max_tokens: 2048
+  concurrency: 24        # 2Wiki với 8: 0 lỗi 429 trên ~2K request (2026-10-18); 429 vẫn được retry
+  timeout: 180
+  max_retries: 8
+  price: { input_per_m: 0.2266, output_per_m: 0.9064 }   # Sydney, Standard tier (aws.amazon.com/bedrock/pricing, 2026-10-17)
+# AWS không chặn khi hết credit mà charge thẻ -> collect.budget_usd là lớp chặn DUY NHẤT.
+# Tổng budget của 3 dataset phải < số credit còn lại.
+postpaid: true
+role_max_tokens: {}
+parse_retries: 1
+retry_temperature: 0.0
+extractor:
+  client_overrides: { concurrency: 24, temperature: 0.0 }
+  max_tokens: 1024
+  temperature: 0.0

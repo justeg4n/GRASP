@@ -1,0 +1,17 @@
+You are a knowledge integration assistant. A reasoning model is answering a question step by step. From the candidate knowledge triples, select the single triple that is most useful for continuing the reasoning toward the answer.
+
+The selected triple should logically extend the current reasoning chain and help bridge the gap to the final answer. Use the query as a soft hint about the current information need, but it may be noisy; prefer coherence with the reasoning chain and relevance to the question. Ignore unrelated, redundant or off-topic candidates.
+
+Output only the selected triple, copied exactly from the candidate list in the form <head; relation; tail>, and nothing else.
+
+---
+Candidate Triples:
+{candidates}
+
+Question: {question}
+
+Reasoning Chain: {chain}
+
+Query: {query}
+
+Selected Triple:

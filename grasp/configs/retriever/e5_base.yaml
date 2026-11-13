@@ -1,0 +1,6 @@
+name: intfloat/e5-base-v2
+query_prefix: "query: "
+passage_prefix: "passage: "
+top_k: 5
+batch_size: 128
+index_type: flat          # đổi sang ivfpq nếu corpus > 2M passage

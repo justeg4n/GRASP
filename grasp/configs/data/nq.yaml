@@ -1,0 +1,8 @@
+name: nq
+questions: { repo: RUC-NLPIR/FlashRAG_datasets, file: nq/train.jsonl }
+corpus:
+  name: wiki18
+  builder: wiki18                      # DPR wiki-18, 21M passage 100 từ (bản jsonl của FlashRAG)
+  sources:
+    - { repo: RUC-NLPIR/FlashRAG_datasets, file: retrieval-corpus/wiki18_100w.zip }
+  index_type: ivfpq

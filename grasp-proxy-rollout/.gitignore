@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.uv-cache/
+.uv-tools/
+.coverage
+test-tmp-*/
+
+# Virtual environments and IDE state
+.venv*/
+.idea/
+.vscode/
+
+# Generated artifacts (sample_output is intentionally versioned)
+outputs/
+checkpoints/
+indexes/
+*.faiss
+
+# Local model and training artifacts (publish these on Hugging Face, not GitHub)
+*-handoff/
+*-handoff.zip
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.bin
+wandb/
+runs/
+logs/
+
+# Downloaded caches and packaged archives
+.cache/
+.huggingface/
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+
+# Local secrets and logs
+.env
+*.log
+
+# Operating-system metadata
+.DS_Store
+Thumbs.db

@@ -1,0 +1,16 @@
+name: intfloat/e5-large-v2
+query_prefix: "query: "
+passage_prefix: "passage: "
+top_k: 10                # SPARKLE: top-10 doc mỗi lần retrieve
+candidates: 100          # IVF-PQ trả 100 ứng viên -> re-score bằng embedding gốc -> top_k
+nprobe: 64
+rescore: true
+batch_size: 256
+max_seq_length: 512
+fp16: true
+device: null             # null = tự chọn cuda nếu có
+shard_size: 250000       # số passage mỗi shard embedding (fp32 tạm ~1GB RAM khi encode)
+index:
+  pq_m: 64               # 64 byte/vector: wiki-18 ~1.4GB RAM
+  nlist: null            # null = tự tính ~4*sqrt(N)
+  train_size: 500000

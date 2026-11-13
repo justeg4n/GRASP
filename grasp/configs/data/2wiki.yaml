@@ -1,0 +1,10 @@
+name: 2wiki
+questions: { repo: RUC-NLPIR/FlashRAG_datasets, file: 2wikimultihopqa/train.jsonl }
+corpus:
+  name: 2wiki_ircot
+  builder: 2wiki_contexts              # theo IRCoT: gộp mọi paragraph trong context của train/dev/test
+  sources:
+    - { repo: voidful/2WikiMultihopQA, file: train.json }
+    - { repo: voidful/2WikiMultihopQA, file: dev.json }
+    - { repo: voidful/2WikiMultihopQA, file: test.json }
+  index_type: flat                     # ~0.4M passage: Flat vừa RAM, không cần nén

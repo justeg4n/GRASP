@@ -1,0 +1,5 @@
+# Dự phòng khi 1.5B bị OOM hoặc rollout quá chậm
+name: Qwen/Qwen2.5-0.5B-Instruct
+load_in_4bit: false
+lora: { r: 16, alpha: 32, dropout: 0.05, target_modules: [q_proj, k_proj, v_proj, o_proj] }
+max_seq_len: 4096

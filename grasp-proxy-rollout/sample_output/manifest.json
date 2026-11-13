@@ -1,0 +1,44 @@
+{
+  "schema_version": "grasp-proxy-rollout-v2",
+  "trajectory_schema": "grasp-agentic-trajectory-v2",
+  "prompt_schema": "grasp-sft-text-v1",
+  "generated": false,
+  "synthetic_example": true,
+  "purpose": "Example of the JSON handoff contract; not a real model result",
+  "on_policy_validity": "Old log-probabilities are valid only until the behavior actor receives its first update.",
+  "behavior_checkpoint": "D:\\checkpoints\\proxy-sft",
+  "checkpoint_kind": "peft_adapter",
+  "base_model": "Qwen/Qwen2.5-3B-Instruct",
+  "qa_file": "examples/qa.json",
+  "qa_sha256": null,
+  "index_dir": "indexes/e5",
+  "index_file": "indexes/e5/index.faiss",
+  "index_sha256": null,
+  "passage_store": "indexes/e5/corpus.json",
+  "passage_store_sha256": null,
+  "triple_store": "indexes/e5/triples.sqlite",
+  "triple_store_sha256": null,
+  "reader": {
+    "base_url": "http://localhost:8000/v1",
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "temperature": 0.0
+  },
+  "retriever": {"encoder": "intfloat/e5-large-v2", "top_k": 10, "max_candidate_triples": 20},
+  "rollout": {
+    "group_size": 2,
+    "max_steps": 5,
+    "proxy_temperature": 0.7,
+    "proxy_top_p": 0.95,
+    "seed": 42
+  },
+  "reward": {"alpha": 0.3, "retrieval_cost": 0.0},
+  "initial_retrieval": {
+    "enabled": true,
+    "query": "original question",
+    "counts_toward_retrieval_cost": false
+  },
+  "trajectory_shards": ["trajectories_00000.json"],
+  "groups_file": "groups.json",
+  "summary_file": "summary.json",
+  "schema_file": "trajectory_schema.json"
+}

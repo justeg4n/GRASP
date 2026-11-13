@@ -1,0 +1,26 @@
+# Sinh trajectory SFT: scripts/collect_sft.py data=hotpotqa|2wiki|nq
+splits: [sft_train, sft_val]
+
+# vòng lặp suy luận (theo SPARKLE)
+max_steps: 5
+max_retrievals: 5
+initial_retrieval: true
+top_k_docs: 10
+triples_top_k: 20
+max_context: 10
+selected_bonus: 0.5
+
+# chạy & xử lý lỗi (spec mục 6)
+concurrency: 16                # số câu chạy song song
+budget_usd: 40                 # budget CỨNG cho mỗi dataset (cộng dồn qua các lần chạy)
+est_usd_per_question: 0.007    # dùng để ước tính trước khi có số đo thật
+force: false                   # true = bỏ qua kiểm tra ước tính vượt budget
+max_attempts: 3
+outage_streak: 10
+client_error_streak: 5
+retry_statuses: []             # vd. [parse_error] để chạy lại các câu lỗi format
+limit: null                    # vd. 10 để smoke test
+progress_every: 25
+
+# lọc khi export
+filter: { em_min: 1.0, f1_min: 0.8 }

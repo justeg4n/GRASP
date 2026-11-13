@@ -1,0 +1,7 @@
+*.py text eol=lf
+*.sh text eol=lf
+*.ps1 text eol=crlf
+*.md text eol=lf
+*.json text eol=lf
+# Preserve canonical artifact bytes: manifest SHA256 must survive Windows/Linux clones.
+outputs/grasp-gold-evidence/** -text

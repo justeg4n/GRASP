@@ -1,0 +1,14 @@
+Extract knowledge triples from the passage below. Each triple states one fact as <head; relation; tail>.
+
+Rules:
+- Cover every factual statement in the passage, including dates, numbers, locations, roles and relations between entities.
+- Use full entity names: replace pronouns and vague references ("he", "the film", "the company") with the entity they refer to. The passage title is usually the main subject.
+- Keep relations short and explicit (e.g. "directed by", "born in", "capital of", "released in").
+- Do not add facts that are not stated in the passage.
+
+Output one triple per line and nothing else.
+
+Title: {title}
+Passage: {text}
+
+Triples:

@@ -1,0 +1,12 @@
+# Baseline cho RQ2 / RQ6 — cùng rollout, cùng reward, thêm critic
+algo: ppo
+value_head: true
+gae_lambda: 0.95
+gamma: 1.0
+lr_policy: 1.0e-6
+lr_value: 1.0e-5
+clip_eps: 0.2
+branch_depth: 2
+batch_size: 1
+grad_accum: 8
+epochs: 1

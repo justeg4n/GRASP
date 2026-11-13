@@ -1,0 +1,7 @@
+# Dùng cho RQ4: kiểm tra generalisation khi swap retriever
+name: BAAI/bge-base-en-v1.5
+query_prefix: ""
+passage_prefix: ""
+top_k: 5
+batch_size: 128
+index_type: flat

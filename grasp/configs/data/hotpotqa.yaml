@@ -1,0 +1,10 @@
+name: hotpotqa
+questions: { repo: RUC-NLPIR/FlashRAG_datasets, file: hotpotqa/train.jsonl }
+corpus:
+  name: hotpotqa_abstracts_2017
+  # corpus gốc của tác giả HotpotQA (~5.2M abstract enwiki-20171001), bản parquet của BEIR trên HF Hub.
+  # Bản tar.bz2 gốc (builder hotpotqa_abstracts) ở nlp.stanford.edu/projects/hotpotqa chỉ tải được ~100KB/s.
+  builder: hotpotqa_beir
+  sources:
+    - { repo: BeIR/hotpotqa, file: corpus/corpus-00000-of-00001.parquet }
+  index_type: ivfpq

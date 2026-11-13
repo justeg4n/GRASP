@@ -1,0 +1,15 @@
+[
+  {
+    "group_id": "example-qa-1::group-0",
+    "question_id": "example-qa-1",
+    "trajectory_ids": [
+      "example-qa-1::group-0::sample-0",
+      "example-qa-1::group-0::sample-1"
+    ],
+    "rewards": [1.0, 0.0],
+    "reward_mean": 0.5,
+    "reward_std": 0.5,
+    "grpo_advantages": [0.999998000004, -0.999998000004],
+    "zero_variance": false
+  }
+]

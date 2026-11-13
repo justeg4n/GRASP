@@ -1,0 +1,12 @@
+# Fallback khi vLLM FP8 không chạy được trên RTX 50xx: AWQ 4-bit (scripts/serve_reader.sh awq).
+client:
+  base_url: ${oc.env:READER_BASE_URL,http://localhost:8000/v1}
+  api_key: ${oc.env:READER_API_KEY,EMPTY}
+  model: Qwen/Qwen2.5-7B-Instruct-AWQ
+  temperature: 0.7
+  max_tokens: 512
+  concurrency: 16
+  timeout: 300
+tokenizer: Qwen/Qwen2.5-7B-Instruct
+max_tokens_answer: 1024
+serve: { mode: awq }
